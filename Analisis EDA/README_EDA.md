@@ -55,7 +55,7 @@ El proceso de EDA siguió los siguientes pasos:
 
 ## 💡 Hallazgos Clave
 
-* **Desbalance de Clases:** El dataset está **fuertemente desbalanceado**. La clase positiva (`DiagPeriodL90D == 1`) representa  el **~67%** del total.
+* **Desbalance de Clases:** El dataset está ** desbalanceado**. La clase positiva (`DiagPeriodL90D == 1`) representa  el **~67%** del total.
 * **Disparidad en Diagnóstico:** El análisis de equidad confirmó **diferencias medibles** en la tasa de diagnóstico positivo entre diferentes grupos raciales y tipos de seguro médico. Esto valida el enfoque del desafío en la *equidad*.
 * **Predictores Potenciales:** Las variables demográficas (`patient_age`) y socioeconómicas (`income_household_median`, `poverty`) mostraron una mayor separación visual con la variable objetivo que las variables ambientales (`Ozone`, `PM25`).
 * **Reducción de Dimensionalidad:** El dataset original, tras la codificación one-hot, superó las 200 columnas. PCA fue efectivo para reducirlo a **~156 componentes** (o el número que te haya dado) explicando el 95% de la varianza.
