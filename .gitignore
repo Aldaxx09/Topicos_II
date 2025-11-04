@@ -3,6 +3,11 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# Ignorar archivos CSV específicos en la raíz del proyecto
+/training.csv
+/test.csv
+/sample_submission.csv
+
 
 # data ignore
 data/*.csv
