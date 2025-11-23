@@ -72,12 +72,18 @@ Esta fase es crucial, ya que la calidad de los datos es el principal riesgo en c
 ## Conclusiones y Tareas Futuras
 
 Hallazgos Clave
+
 • La variable objetivo (DiagPeriodL90D) presenta desbalance de clases
+
 • El conjunto de datos requirió un esfuerzo significativo de limpieza y preprocesamiento para manejar los valores nulos.
+
 • Imputación: El tratamiento de valores nulos, especialmente en bmi, mediante la creación de categorías Unknown, resultó ser una característica predictiva útil.
+
 • Proceso Estructurado: El uso de RFECV para la selección de características y la validación cruzada (cross_validate) garantizan un proceso riguroso y una métrica de rendimiento confiable, evitando errores metodológicos [cod_final, 257, 345].
 Reflexiones sobre Implementación (IA/Scheme)
+
 • Se detectaron y eliminaron columnas sin valor predictivo (como patient_gender)
+
 • El análisis de correlación y la importancia de características mediante Random Forest identificaron variables candidatas a ser eliminadas por ser ruido probable.
 
 ## 🛠️ Tecnologías Utilizadas
