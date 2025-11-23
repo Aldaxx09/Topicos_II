@@ -1,6 +1,6 @@
 # Topicos_II
 
-# Proyecto 1:
+# Proyecto 1 :
 
 ## 🚀 WiDS Datathon 2024 - Análisis de Equidad en IA de Salud
 
