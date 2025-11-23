@@ -90,14 +90,12 @@ Reflexiones sobre Implementación (IA/Scheme)
 - Scikit-learn (para `PCA`, `StandardScaler`, `SimpleImputer`)
 - Jupyter Notebook
 
----
-
 ## ▶️ Cómo Ejecutar este Proyecto
 
 1.  Clona este repositorio:
     ```bash
-    git clone [https://github.com/](https://github.com/)[TuUsuario]/[TuRepositorio].git
-    cd [TuRepositorio]
+    git clone https://github.com/Aldaxx09/Topicos_II.git
+    cd [Temas_II]
     ```
 2.  (Recomendado) Crea un entorno virtual:
     ```bash
