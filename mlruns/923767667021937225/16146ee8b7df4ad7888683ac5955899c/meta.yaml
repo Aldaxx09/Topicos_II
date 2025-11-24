@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/src/mlruns/923767667021937225/16146ee8b7df4ad7888683ac5955899c/artifacts
+end_time: 1763958030894
+entry_point_name: ''
+experiment_id: '923767667021937225'
+lifecycle_stage: active
+run_id: 16146ee8b7df4ad7888683ac5955899c
+run_name: RandomForest_rfecv
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763958011320
+status: 3
+tags: []
+user_id: alda09

@@ -1,7 +1,6 @@
+# module_path.py
 # Importar librerias estandar
 from pathlib import Path
-
-
 
 def train_data_path() -> Path:
     # Devuelve la ruta al archivo de entrenamiento.

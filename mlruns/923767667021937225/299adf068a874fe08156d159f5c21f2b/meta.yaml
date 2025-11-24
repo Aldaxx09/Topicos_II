@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/src/mlruns/923767667021937225/299adf068a874fe08156d159f5c21f2b/artifacts
+end_time: 1763958193763
+entry_point_name: ''
+experiment_id: '923767667021937225'
+lifecycle_stage: active
+run_id: 299adf068a874fe08156d159f5c21f2b
+run_name: Bagging_rfecv
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763958170952
+status: 3
+tags: []
+user_id: alda09

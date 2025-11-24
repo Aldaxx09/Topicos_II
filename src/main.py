@@ -1,77 +1,76 @@
-
-import pandas as pd
+# main.py
 import sys
-# Importamos nuestros módulos 
-from module_data import Dataset
-from module_ml import Model
+import pandas as pd
+import numpy as np
+import mlflow
+import mlflow.sklearn
 
+# Importamos las clases actualizadas
+from module_data import DataProcessor
+from module_ml import ModelEvaluator
 
-
-# 1. Elegir método de limpieza: 
-#    Opciones: 'dropna', 'mean'/'most_frequent', 'knn'
-CLEANING_STRATEGY = 'knn' 
-
-# 2. Elegir método de escalamiento: 
-#    Opciones: 'standard' (StandardScaler), 'minmax' (MinMaxScaler), 'none'
-SCALING_STRATEGY = 'standard' 
-
-# 3. Elegir método de selección de características: 
-#    Opciones: 'rfecv', 'pca', 'none'
-FEATURE_SELECTION_STRATEGY = 'rfecv'
-
-# 4. Elegir si usar SMOTE: 
-#    Opciones: True, False
-USE_SMOTE = True 
-
-# 5. Elegir el modelo a usar: 
-#    Opciones: 'LogisticRegression', 'RandomForest', 'SVC', 'DecisionTree', 'MLP'
-MODEL_NAME = 'LogisticRegression' 
-
-# ==========================================================
+# ================= CONFIGURACIÓN DEL EXPERIMENTO =================
+# Puedes cambiar estos valores manualmente y volver a ejecutar para registrar nuevos experimentos
+SCALING_STRATEGY = 'minmax' 
+FEATURE_SELECTION_STRATEGY = 'rfecv' 
+MODEL_NAME = 'GaussianNB' 
+# =================================================================
 
 def main():
-    """
-    Función principal que orquesta el pipeline de ML.
-    Sigue el flujo: Carga -> Preprocesamiento -> Selección de Características -> 
-    Modelado (Split, SMOTE, Entrenamiento, Evaluación).
-    """
-    print("--- Iniciando Pipeline Modular de Machine Learning ---")
+    print("--- Iniciando Pipeline Modular con MLflow ---")
     
-    # 1. CARGA Y PREPROCESAMIENTO
-    data_handler = Dataset(num_samples=None, seed=42)
+    # Configurar el nombre del experimento en MLflow
+    mlflow.set_experiment("WIDS_Experimentacion_Modular")
     
-    # Se obtienen X y Y preprocesados y escalados
-    X_processed, y_target = data_handler.preprocess_data(
-        clean_method=CLEANING_STRATEGY, 
-        scaler_method=SCALING_STRATEGY
-    )
-    
-    # 2. SELECCIÓN DE CARACTERÍSTICAS
-    X_final = data_handler.apply_feature_selection(
-        X=X_processed, 
-        y=y_target, 
-        feature_method=FEATURE_SELECTION_STRATEGY
-    )
-    
-    print(f"Dimensiones finales para el modelado (X): {X_final.shape}, (y): {y_target.shape}")
-    
-    
-    
-    # 3. MODELADO Y EVALUACION
-    
-    # Obtener el modelo deseado
-    model_instance = Model.get_model_instance(MODEL_NAME)
+    # Iniciar el tracking del experimento
+    with mlflow.start_run(run_name=f"{MODEL_NAME}_{FEATURE_SELECTION_STRATEGY}"):
+        
+        # -------------------------------------------------
+        # A. REGISTRO DE PARÁMETROS (Configuración)
+        # -------------------------------------------------
+        mlflow.log_param("model_name", MODEL_NAME)
+        mlflow.log_param("scaling_strategy", SCALING_STRATEGY)
+        mlflow.log_param("feature_selection", FEATURE_SELECTION_STRATEGY)
+        
+        # 1. Instanciar Procesador de Datos
+        processor = DataProcessor(seed=42)
+        
+        # 2. Obtener datos PROCESADOS y DIVIDIDOS (Validación Interna)
+        print("\n>>> 1. Procesamiento y Split (Validación Interna)...")
+        X_train, X_test, y_train, y_test = processor.get_processed_data(
+            scaler_method=SCALING_STRATEGY,
+            feature_method=FEATURE_SELECTION_STRATEGY
+        )
+        
+        # Registrar cuántas features quedaron
+        mlflow.log_param("n_features_final", X_train.shape[1])
+        print(f"\nDatos Listos. Features finales: {X_train.shape[1]}")
+        
+        # 3. Entrenar y Evaluar
+        print("\n>>> 2. Entrenamiento y Evaluación Interna...")
+        model_instance = ModelEvaluator.get_model_instance(MODEL_NAME)
+        evaluator = ModelEvaluator(model_instance)
+        
+        evaluator.train(X_train, y_train)
+        
+        # Obtenemos las métricas del evaluador (gracias al cambio en module_ml.py)
+        metrics = evaluator.evaluate(X_test, y_test)
+        
+        # -------------------------------------------------
+        # B. REGISTRO DE MÉTRICAS (Resultados)
+        # -------------------------------------------------
+        mlflow.log_metrics(metrics)
+        print(f"✅ Métricas registradas en MLflow: {metrics}")
+        
+        # -------------------------------------------------
+        # C. REGISTRO DEL MODELO (Artefacto)
+        # -------------------------------------------------
+        mlflow.sklearn.log_model(evaluator.model, "model")
+        print("✅ Modelo guardado en MLflow.")
 
-    # Inicializar el manejador de modelos con los datos finales
-    ml_experiment = Model(X=X_final, y=y_target, seed=42)
-    
-    # Entrenar y evaluar con las estrategias configuradas
-    ml_experiment.train_and_evaluate(
-        model=model_instance, 
-        use_smote=USE_SMOTE
-    )
-    
-    print("\n--- Pipeline finalizado exitosamente. ---")
+    print("\n--- Experimento finalizado exitosamente. ---")
 
 if __name__ == "__main__":
     main()
+
+# mlflow ui

@@ -1,100 +1,92 @@
-
+# module_ml.py
 import pandas as pd
-from sklearn.model_selection import train_test_split
+import numpy as np
 from sklearn.metrics import accuracy_score, roc_auc_score, classification_report
-# Modelos de clasificación configurables
+
+# --- IMPORTACIÓN DE MODELOS EXTENDIDOS ---
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import (
+    RandomForestClassifier, 
+    GradientBoostingClassifier, 
+    AdaBoostClassifier, 
+    BaggingClassifier
+)
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.neural_network import MLPClassifier # MLP para el 'Neural Net'
-# Manejo de Desbalance (requiere la librería imblearn)
-from imblearn.over_sampling import SMOTE 
-from imblearn.pipeline import Pipeline as ImbPipeline
+from sklearn.naive_bayes import GaussianNB
 
-class Model:
-    def __init__(self, X: pd.DataFrame, y: pd.Series, seed: int = 42):
-        """Inicializa la clase Model con datos y semilla."""
-        self.X = X
-        self.y = y
-        self.seed = seed
+class ModelEvaluator:
+    """
+    Clase dedicada a la gestión del ciclo de vida del modelo:
+    Entrenamiento y Evaluación.
+    """
+    def __init__(self, model):
+        """Recibe una instancia de modelo ya configurada."""
+        self.model = model
 
-    def split(self, train_size: float = 0.8):
-        """Divide los datos en conjuntos de entrenamiento y prueba, estratificando por 'y'."""
-        # Se usa 'stratify=self.y' para asegurar que la proporción de clases se mantenga en train y test.
-        X_train, X_test, y_train, y_test = train_test_split(self.X,
-                                                            self.y,
-                                                            train_size=train_size,
-                                                            random_state=self.seed,
-                                                            stratify=self.y # Importante por el desbalance
-                                                            )
-        return X_train, X_test, y_train, y_test
+    def train(self, X_train, y_train):
+        """Entrena el modelo usando SOLO el set de entrenamiento."""
+        print(f"Entrenando {self.model.__class__.__name__}...")
+        self.model.fit(X_train, y_train)
 
-    def train_and_evaluate(self, model, use_smote: bool = False):
-        """
-        Entrena y evalúa el modelo, opcionalmente aplicando SMOTE en el conjunto de entrenamiento.
-        :param model: Instancia del modelo a entrenar.
-        :param use_smote: Si True, aplica SMOTE al X_train.
-        """
-        X_train, X_test, y_train, y_test = self.split() # División de datos
-
-        if use_smote:
-            print("Aplicando SMOTE para manejar el desbalance de clases...")
-            sm = SMOTE(random_state=self.seed)
-            # SMOTE solo se aplica a los datos de ENTRENAMIENTO 
-            X_train_res, y_train_res = sm.fit_resample(X_train, y_train)
-            print(f"Tamaño de entrenamiento antes de SMOTE: {len(y_train)}. Después: {len(y_train_res)}")
+    def evaluate(self, X_test, y_test):
+        """Predice y evalúa usando el set de prueba (Validación Interna)."""
+        print("Evaluando modelo...")
+        y_pred = self.model.predict(X_test)
+        
+        # Calcular ROC-AUC de forma robusta
+        roc = 0.5
+        if hasattr(self.model, "predict_proba"):
+            try:
+                y_prob = self.model.predict_proba(X_test)[:, 1]
+                roc = roc_auc_score(y_test, y_prob)
+            except Exception:
+                pass 
+        elif hasattr(self.model, "decision_function"):
+            try:
+                y_prob = self.model.decision_function(X_test)
+                roc = roc_auc_score(y_test, y_prob)
+            except Exception:
+                pass
             
-            # Usar los datos remuestreados
-            X_train = X_train_res
-            y_train = y_train_res
-
-        print(f"Iniciando entrenamiento del modelo {model.__class__.__name__}...")
+        acc = accuracy_score(y_test, y_pred)
         
-        # El entrenamiento se realiza sobre los datos (posiblemente remuestreados)
-        model.fit(X_train, y_train) 
-        print("Entrenamiento completado.")
-
-        # --- Evaluación ---
-        y_pred = model.predict(X_test) # Predicción sobre el conjunto de prueba (no visto)
+        print("\n--- Resultados de Evaluación ---")
+        print(f"Accuracy: {acc:.4f}")
+        print(f"ROC-AUC:  {roc:.4f}")
+        print("\n" + classification_report(y_test, y_pred))
         
-        print("\n--- Métricas Relevantes en el Conjunto de Prueba ---")
-        accuracy = accuracy_score(y_test, y_pred) # Exactitud [16]
-        roc_score = roc_auc_score(y_test, y_pred) # ROC AUC (para clasificación binaria) [16]
-        
-        print(f"Accuracy: {accuracy:.4f}")
-        print(f"ROC_AUC Score: {roc_score:.4f}")
-        print("\nReporte de Clasificación:")
-        print(classification_report(y_test, y_pred))
+        # RETORNAMOS LAS MÉTRICAS PARA MLFLOW
+        return {
+            "accuracy": acc,
+            "roc_auc": roc
+        }
 
     @staticmethod
-    def get_model_instance(model_name: str):
-        """Factoría estática para obtener una instancia del modelo basado en el nombre."""
+    def get_model_instance(model_name: str, seed: int = 42):
+        """Factory Method para obtener modelos preconfigurados."""
+        
         if model_name == 'LogisticRegression':
-            # Modelo de regresión logística, afinado para convergencia rápida
-            return LogisticRegression(random_state=42, max_iter=10_000, solver='liblinear')
+            return LogisticRegression(random_state=seed, max_iter=5000, solver='liblinear', class_weight='balanced')
         elif model_name == 'RandomForest':
-            # Modelo de ensamble (Bosque Aleatorio) [17]
-            return RandomForestClassifier(random_state=42, n_estimators=500)
+            return RandomForestClassifier(random_state=seed, n_estimators=200, class_weight='balanced')
+        elif model_name == 'GradientBoosting':
+            return GradientBoostingClassifier(random_state=seed, n_estimators=200, learning_rate=0.1)
+        elif model_name == 'AdaBoost':
+            return AdaBoostClassifier(random_state=seed, n_estimators=100)
+        elif model_name == 'Bagging':
+            return BaggingClassifier(random_state=seed, n_estimators=50)
         elif model_name == 'SVC':
-            # Máquinas de Vectores de Soporte (con kernel lineal, como se usa a menudo en texto) [18]
-            return SVC(random_state=42, kernel='linear', probability=True)
+            return SVC(random_state=seed, probability=True, class_weight='balanced')
         elif model_name == 'DecisionTree':
-            # Árbol de Decisión individual [19]
-            return DecisionTreeClassifier(random_state=42)
+            return DecisionTreeClassifier(random_state=seed, class_weight='balanced')
         elif model_name == 'MLP':
-            # Perceptrón Multicapa (Red Neuronal Básica) [20]
-            return MLPClassifier(random_state=42, max_iter=1000, early_stopping=True)
+            return MLPClassifier(random_state=seed, max_iter=1000, hidden_layer_sizes=(100, 50), early_stopping=True)
+        elif model_name == 'KNN':
+            return KNeighborsClassifier(n_neighbors=5, n_jobs=-1)
+        elif model_name == 'GaussianNB':
+            return GaussianNB()
         else:
-            raise ValueError(f"Modelo '{model_name}' no soportado o mal escrito.")
-        
-        
-'''
-SMOTE (Synthetic Minority Oversampling Technique): SMOTE es una técnica para balancear clases en problemas de clasificación
-cuando el dataset está desbalanceado. El módulo implementa la lógica para aplicarlo solo al conjunto de entrenamiento
-(X_train, y_train), ya que si se aplicara al conjunto de prueba, se introduciría un sesgo irreal en la evaluación.
-• Fábrica de Modelos (get_model_instance): Esta función estática permite que main.py solicite un modelo por su nombre
-(LogisticRegression, RandomForest, etc.) sin tener que codificar la importación y la inicialización de la clase en main.py.
-
-'''
+            raise ValueError(f"Modelo '{model_name}' no soportado. Revisa la ortografía.")
