@@ -22,13 +22,21 @@ El proyecto transforma un análisis exploratorio inicial (EDA) en un **Pipeline 
 ## 📂 Estructura del Repositorio
 
 ├── data/ # Conjuntos de datos (training.csv, test.csv)
+
 ├── mlruns/ # Registro de experimentos de MLflow
+
 ├── src/ # Código fuente modular
+
 │ ├── **init**.py
+
 │ ├── main.py # Script orquestador principal
+
 │ ├── module_data.py # Clase DataProcessor (Carga, Limpieza, FE, Split)
+
 │ ├── module_ml.py # Clase ModelEvaluator y Factory de Modelos
+
 │ └── module_path.py # Gestión de rutas relativas
+
 └── README.md # Documentación del proyecto
 
 ## 📊 Experimentación
