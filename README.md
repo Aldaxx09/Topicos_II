@@ -45,7 +45,3 @@ Se compararon los siguientes modelos utilizando métricas de Accuracy y ROC-AUC:
 - MLP
 - KNN
 - GaussianNB
-
-```
-
-```
