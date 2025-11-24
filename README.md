@@ -27,8 +27,6 @@ El proyecto transforma un análisis exploratorio inicial (EDA) en un **Pipeline 
 
 ├── src/ # Código fuente modular
 
-│ ├── **init**.py
-
 │ ├── main.py # Script orquestador principal
 
 │ ├── module_data.py # Clase DataProcessor (Carga, Limpieza, FE, Split)
