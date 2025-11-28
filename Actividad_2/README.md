@@ -66,7 +66,6 @@ El sistema automatiza el preprocesamiento, la selección de características y l
 
 ## 📂 Estructura del Proyecto
 
-```text
 ├── data/
 │   └── training.csv         # Dataset de entrada
 ├── mlruns/                  # Historial de experimentos (Se crea automáticamente al ejecutar)
