@@ -1,0 +1,22 @@
+artifact_path: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/Actividad_2/src/mlruns/245720417839246919/models/m-2e73a48cfe3146cb941135cb03294669/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.19
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+mlflow_version: 3.6.0
+model_id: m-2e73a48cfe3146cb941135cb03294669
+model_size_bytes: 257721
+model_uuid: m-2e73a48cfe3146cb941135cb03294669
+prompts: null
+run_id: 0adf5976a3cf4976b75a564930d05be0
+utc_time_created: '2025-11-28 03:22:27.783422'

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/Actividad_2/src/mlruns/245720417839246919/5152c132df2e4d2bbe1a79b7b9f26c2d/artifacts
+end_time: 1764299456973
+entry_point_name: ''
+experiment_id: '245720417839246919'
+lifecycle_stage: active
+run_id: 5152c132df2e4d2bbe1a79b7b9f26c2d
+run_name: GradientBoosting_rfecv
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764299440912
+status: 3
+tags: []
+user_id: alda09

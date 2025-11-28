@@ -1,9 +1,8 @@
-# module_ml.py
 import pandas as pd
 import numpy as np
 from sklearn.metrics import accuracy_score, roc_auc_score, classification_report
 
-# --- IMPORTACIÓN DE MODELOS EXTENDIDOS ---
+# IMPORTACIÓN DE MODELOS EXTENDIDOS
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import (
     RandomForestClassifier, 
@@ -36,7 +35,7 @@ class ModelEvaluator:
         print("Evaluando modelo...")
         y_pred = self.model.predict(X_test)
         
-        # Calcular ROC-AUC de forma robusta
+        # Calcular ROC-AUC 
         roc = 0.5
         if hasattr(self.model, "predict_proba"):
             try:
@@ -69,7 +68,7 @@ class ModelEvaluator:
         """Factory Method para obtener modelos preconfigurados."""
         
         if model_name == 'LogisticRegression':
-            return LogisticRegression(random_state=seed, max_iter=5000, solver='liblinear', class_weight='balanced')
+            return LogisticRegression(random_state=seed, max_iter=20000, solver='liblinear', class_weight='balanced')
         elif model_name == 'RandomForest':
             return RandomForestClassifier(random_state=seed, n_estimators=200, class_weight='balanced')
         elif model_name == 'GradientBoosting':
@@ -78,8 +77,6 @@ class ModelEvaluator:
             return AdaBoostClassifier(random_state=seed, n_estimators=100)
         elif model_name == 'Bagging':
             return BaggingClassifier(random_state=seed, n_estimators=50)
-        elif model_name == 'SVC':
-            return SVC(random_state=seed, probability=True, class_weight='balanced')
         elif model_name == 'DecisionTree':
             return DecisionTreeClassifier(random_state=seed, class_weight='balanced')
         elif model_name == 'MLP':

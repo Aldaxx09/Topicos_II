@@ -1,5 +1,3 @@
-# module_data.py
-
 # Modulos de terceros
 import numpy as np
 import pandas as pd
@@ -15,14 +13,12 @@ import os
 from module_path import train_data_path
 
 COL_TARGET = "DiagPeriodL90D"
-RFECV_MODEL_PATH = "rfecv_model.joblib"
+RFECV_MODEL_PATH = "rfecv_model.joblib" 
 
 class DataProcessor:
     def __init__(self, seed: int = 42, test_size: float = 0.2):
         self.seed = seed
         self.test_size = test_size
-
-        # Objetos que se reutilizan en inference
         self.numeric_imputer = None
         self.cat_imputer = None
         self.scaler = None
@@ -121,7 +117,7 @@ class DataProcessor:
         X_train_final = X_train_final.astype(float)
         X_test_final  = X_test_final.astype(float)
 
-        # 7. IMPUTACIÓN FINAL (numeric vs. categorical ya están ohe'd -> todo es numérico)
+        # 7. IMPUTACIÓN  
         # Usamos SimpleImputer sobre todo el frame (numérico), evitando None
         if clean_method == 'mean':
             self.numeric_imputer = SimpleImputer(strategy='mean')

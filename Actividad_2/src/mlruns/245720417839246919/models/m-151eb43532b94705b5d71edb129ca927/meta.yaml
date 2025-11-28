@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/Actividad_2/src/mlruns/245720417839246919/models/m-151eb43532b94705b5d71edb129ca927/artifacts
+creation_timestamp: 1764299860716
+experiment_id: '245720417839246919'
+last_updated_timestamp: 1764299867797
+model_id: m-151eb43532b94705b5d71edb129ca927
+model_type: null
+name: model
+source_run_id: 07ea3878402b4a088b157d742a85bd12
+status: 2
+status_message: null
