@@ -1,41 +1,27 @@
-# 🚀 Pipeline Modular de Machine Learning - WIDS Datathon 2024
+# 🔬 Tópicos II - Actividad 2: Pipeline Modular con MLflow
 
-> **Actividad 2 - Tópicos Selectos II** > _Enfoque: MLOps, Modularidad y Reproducibilidad._
+Este proyecto implementa un flujo de trabajo (pipeline) de Machine Learning modular para la clasificación de diagnósticos médicos (Dataset WiDS Datathon 2024).
 
-Este repositorio contiene una solución de arquitectura modular para el desafío **WiDS Datathon 2024: Equidad en la IA de Salud**. El objetivo es predecir diagnósticos médicos (`DiagPeriodL90D`) asegurando un flujo de trabajo robusto, libre de _Data Leakage_ y con seguimiento de experimentos automatizado.
+El sistema automatiza el preprocesamiento, la selección de características y la evaluación comparativa de múltiples modelos, registrando todos los experimentos mediante **MLflow**.
 
----
+## 🚀 Características Principales
 
-## 📖 Descripción del Proyecto
+* **Arquitectura Modular:** Código organizado en módulos: procesamiento (`module_data.py`), modelado (`module_ml.py`) y orquestación (`main.py`).
+* **MLflow Tracking:** Registro automático de métricas (ROC-AUC, Accuracy), parámetros y modelos.
+* **Consola Limpia:** Ejecución optimizada para mostrar solo la información relevante (sin advertencias ni barras de carga).
+* **Organización:** Los experimentos se guardan automáticamente en la carpeta `mlruns` fuera del código fuente.
 
-El proyecto transforma un análisis exploratorio inicial (EDA) en un **Pipeline de Producción** siguiendo principios de Diseño Orientado a Objetos (OOP).
+## 📂 Estructura del Proyecto
 
-### Características Clave:
-
-- **🏗️ Arquitectura Modular:** Separación estricta entre Datos (`DataProcessor`), Modelado (`ModelEvaluator`) y Orquestación (`main`).
-- **🛡️ Prevención de Data Leakage:** El preprocesamiento (imputación, escalado, selección) se ajusta (_fit_) estrictamente en el conjunto de entrenamiento y se aplica (_transform_) al conjunto de prueba.
-- **🔬 Experimentación Trackeada:** Integración con **MLflow** para registrar métricas, parámetros y artefactos de modelos automáticamente.
-- **⚙️ Ingeniería de Características Avanzada:** Segmentación de edad, índice sintético de contaminación, codificación ordinal de BMI y Frequency Encoding de zonas postales.
-
----
-
-## 📂 Estructura del Repositorio
-
-├── data/ # Conjuntos de datos (training.csv, test.csv)
-
-├── mlruns/ # Registro de experimentos de MLflow
-
-├── src/ # Código fuente modular
-
-│ ├── main.py # Script orquestador principal
-
-│ ├── module_data.py # Clase DataProcessor (Carga, Limpieza, FE, Split)
-
-│ ├── module_ml.py # Clase ModelEvaluator y Factory de Modelos
-
-│ └── module_path.py # Gestión de rutas relativas
-
-└── README.md # Documentación del proyecto
+```text
+├── data/
+│   └── training.csv         # Dataset de entrada
+├── mlruns/                  # Historial de experimentos (Se crea automáticamente al ejecutar)
+├── src/                     # Código Fuente
+│   ├── main.py              # Script Principal (Orquestador)
+│   ├── module_data.py       # Procesamiento de Datos
+│   └── module_ml.py         # Entrenamiento y Evaluación
+└── README.md                # Este archivo
 
 ## 📊 Experimentación
 
@@ -51,3 +37,11 @@ Se compararon los siguientes modelos utilizando métricas de Accuracy y ROC-AUC:
 - MLP
 - KNN
 - GaussianNB
+
+⚙️ Requisitos
+Asegúrate de tener instalado Python 3.9+. Instala las librerías necesarias ejecutando:
+
+Bash
+
+pip install pandas numpy scikit-learn mlflow
+
