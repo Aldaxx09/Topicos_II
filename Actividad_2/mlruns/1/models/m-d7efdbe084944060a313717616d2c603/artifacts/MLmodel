@@ -1,0 +1,79 @@
+artifact_path: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/Actividad_2/src/mlruns/1/models/m-d7efdbe084944060a313717616d2c603/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.19
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+is_signature_from_type_hint: false
+mlflow_version: 3.6.0
+model_id: m-d7efdbe084944060a313717616d2c603
+model_size_bytes: 365075
+model_uuid: m-d7efdbe084944060a313717616d2c603
+prompts: null
+run_id: f1d92b8bcb574846b4e69ac89a91cc07
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "population", "required": true}, {"type": "double",
+    "name": "density", "required": true}, {"type": "double", "name": "age_median",
+    "required": true}, {"type": "double", "name": "age_under_10", "required": true},
+    {"type": "double", "name": "age_30s", "required": true}, {"type": "double", "name":
+    "age_60s", "required": true}, {"type": "double", "name": "family_size", "required":
+    true}, {"type": "double", "name": "income_household_under_5", "required": true},
+    {"type": "double", "name": "income_household_10_to_15", "required": true}, {"type":
+    "double", "name": "income_household_35_to_50", "required": true}, {"type": "double",
+    "name": "income_household_six_figure", "required": true}, {"type": "double", "name":
+    "income_individual_median", "required": true}, {"type": "double", "name": "housing_units",
+    "required": true}, {"type": "double", "name": "home_value", "required": true},
+    {"type": "double", "name": "rent_median", "required": true}, {"type": "double",
+    "name": "rent_burden", "required": true}, {"type": "double", "name": "education_stem_degree",
+    "required": true}, {"type": "double", "name": "labor_force_participation", "required":
+    true}, {"type": "double", "name": "self_employed", "required": true}, {"type":
+    "double", "name": "poverty", "required": true}, {"type": "double", "name": "commute_time",
+    "required": true}, {"type": "double", "name": "health_uninsured", "required":
+    true}, {"type": "double", "name": "age_30_44", "required": true}, {"type": "double",
+    "name": "age_75_plus", "required": true}, {"type": "double", "name": "patient_race_Black",
+    "required": true}, {"type": "double", "name": "payer_type_COMMERCIAL", "required":
+    true}, {"type": "double", "name": "payer_type_MEDICAID", "required": true}, {"type":
+    "double", "name": "payer_type_nan", "required": true}, {"type": "double", "name":
+    "patient_state_CT", "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_1741",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_1742",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_1743",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_1744",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_1745",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_1748",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_1749",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_1759",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_19881",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_C5021",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_C50421",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_C50619",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_C50811",
+    "required": true}, {"type": "double", "name": "breast_cancer_diagnosis_code_C509",
+    "required": true}, {"type": "double", "name": "metastatic_cancer_diagnosis_code_C774",
+    "required": true}, {"type": "double", "name": "metastatic_cancer_diagnosis_code_C7830",
+    "required": true}, {"type": "double", "name": "metastatic_cancer_diagnosis_code_C7839",
+    "required": true}, {"type": "double", "name": "metastatic_cancer_diagnosis_code_C784",
+    "required": true}, {"type": "double", "name": "metastatic_cancer_diagnosis_code_C7880",
+    "required": true}, {"type": "double", "name": "metastatic_cancer_diagnosis_code_C7901",
+    "required": true}, {"type": "double", "name": "metastatic_cancer_diagnosis_code_C7911",
+    "required": true}, {"type": "double", "name": "metastatic_cancer_diagnosis_code_C7971",
+    "required": true}, {"type": "double", "name": "metastatic_cancer_diagnosis_code_C7981",
+    "required": true}, {"type": "double", "name": "metastatic_first_novel_treatment_PEMBROLIZUMAB",
+    "required": true}]'
+  outputs: '[{"type": "long", "required": true}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-11-28 04:24:17.100140'
