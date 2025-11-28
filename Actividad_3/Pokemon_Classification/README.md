@@ -72,7 +72,7 @@ _(Ver carpeta `reportes/` para gráficos detallados de curvas de aprendizaje y m
 1. **Clonar el repositorio:**
 
    ```
-   git clone [https://github.com/tu-usuario/pokemon-classification.git](https://github.com/tu-usuario/pokemon-classification.git)
+   git clone [https://github.com/Aldaxx09/Topicos_II.git](https://github.com/Aldaxx09/Topicos_II.git)
    cd pokemon-classification
 
    ```
@@ -114,4 +114,3 @@ _(Ver carpeta `reportes/` para gráficos detallados de curvas de aprendizaje y m
 **Jesus Adahir Copado Crespo** Maestría en Ciencia de Datos - CUCEA
 """
 
-print(readme_content)
