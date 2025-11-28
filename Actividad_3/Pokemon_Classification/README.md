@@ -114,4 +114,3 @@ _(Ver carpeta `reportes/` para gráficos detallados de curvas de aprendizaje y m
 **Jesus Adahir Copado Crespo** Maestría en Ciencia de Datos - CUCEA
 """
 
-print(readme_content)
