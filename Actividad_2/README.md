@@ -13,6 +13,7 @@ El sistema automatiza el preprocesamiento, la selección de características y l
 
 ## 📂 Estructura del Proyecto
 
+```text
 ├── data/
 │   └── training.csv         # Dataset de entrada
 ├── mlruns/                  # Historial de experimentos (Se crea automáticamente al ejecutar)
@@ -21,7 +22,6 @@ El sistema automatiza el preprocesamiento, la selección de características y l
 │   ├── module_data.py       # Procesamiento de Datos
 │   └── module_ml.py         # Entrenamiento y Evaluación
 └── README.md                # Este archivo
-
 
 ⚙️ Requisitos
 Asegúrate de tener instalado Python 3.9+. Instala las librerías necesarias ejecutando:
