@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/Actividad_2/src/../mlruns/522402683024970863/models/m-bae1c99e49b54f08822752c47cb0f54e/artifacts
+creation_timestamp: 1764305353912
+experiment_id: '522402683024970863'
+last_updated_timestamp: 1764305364396
+model_id: m-bae1c99e49b54f08822752c47cb0f54e
+model_type: null
+name: RandomForest
+source_run_id: 0f7fb2caec2a45d5ad1b191ed6f526f4
+status: 2
+status_message: null

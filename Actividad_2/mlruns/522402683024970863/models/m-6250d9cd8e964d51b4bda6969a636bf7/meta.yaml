@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/Actividad_2/src/../mlruns/522402683024970863/models/m-6250d9cd8e964d51b4bda6969a636bf7/artifacts
+creation_timestamp: 1764305373661
+experiment_id: '522402683024970863'
+last_updated_timestamp: 1764305380273
+model_id: m-6250d9cd8e964d51b4bda6969a636bf7
+model_type: null
+name: MLP
+source_run_id: 62c78ebf486945ccaf177590a9b3ee33
+status: 2
+status_message: null

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/Actividad_2/src/../mlruns/522402683024970863/3ea99e2f966c4724a6f0aba3f8eeebcd/artifacts
+end_time: 1764305371817
+entry_point_name: ''
+experiment_id: '522402683024970863'
+lifecycle_stage: active
+run_id: 3ea99e2f966c4724a6f0aba3f8eeebcd
+run_name: GaussianNB_rfecv
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764305364456
+status: 3
+tags: []
+user_id: alda09

@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/Actividad_2/src/../mlruns/522402683024970863/models/m-a0fcab39f14b4903bd1dfd24b911151e/artifacts
+creation_timestamp: 1764305422517
+experiment_id: '522402683024970863'
+last_updated_timestamp: 1764305428573
+model_id: m-a0fcab39f14b4903bd1dfd24b911151e
+model_type: null
+name: DecisionTree
+source_run_id: 1749d41c09d347f29adc1b0772a39a37
+status: 2
+status_message: null

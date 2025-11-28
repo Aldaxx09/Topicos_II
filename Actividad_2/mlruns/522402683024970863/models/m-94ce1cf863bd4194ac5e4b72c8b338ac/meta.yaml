@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/Actividad_2/src/../mlruns/522402683024970863/models/m-94ce1cf863bd4194ac5e4b72c8b338ac/artifacts
+creation_timestamp: 1764305415656
+experiment_id: '522402683024970863'
+last_updated_timestamp: 1764305421970
+model_id: m-94ce1cf863bd4194ac5e4b72c8b338ac
+model_type: null
+name: GradientBoosting
+source_run_id: ce333d1ccd9e4262afd5d9e83dc039e3
+status: 2
+status_message: null

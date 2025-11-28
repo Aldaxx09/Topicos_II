@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/alda09/MCD_carrera/SEMESTRE_3/Martes/Repositorio/Topicos_II/Actividad_2/src/../mlruns/522402683024970863/1749d41c09d347f29adc1b0772a39a37/artifacts
+end_time: 1764305428597
+entry_point_name: ''
+experiment_id: '522402683024970863'
+lifecycle_stage: active
+run_id: 1749d41c09d347f29adc1b0772a39a37
+run_name: DecisionTree_rfecv
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764305422011
+status: 3
+tags: []
+user_id: alda09
